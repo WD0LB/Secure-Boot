@@ -1,3 +1,4 @@
+
 #include "bootloader.h"
 #include "crypto.h" // Assume this header provides cryptographic functionalities
 
