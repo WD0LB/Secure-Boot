@@ -12,6 +12,8 @@
 
 /* Function Declarations */
 static uint8_t verify_signature(void);
+void Bootloader_HandleError(BLState error_code);
+
 typedef void (*pFunction)(void);
 typedef enum bl_state_t{
     BL_OK = 0,
@@ -28,6 +30,8 @@ typedef enum bl_state_t{
     BL_SwitchToApplication,
     BL_VerifyApplicationSuccess,
     BL_VerifyApplicationFail,
+    BL_ERR_FLASH_WRITE,
+    BL_ERR_HW_FAILURE
 }BLState;
 
 #endif

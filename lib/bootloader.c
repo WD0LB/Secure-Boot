@@ -19,7 +19,7 @@ int main(void)
     if(status != BL_VerifyApplicationSuccess)
     {
         // Handle the error, perhaps by entering a safe state or attempting recovery
-        Bootloader_HandleError();
+        Bootloader_HandleError(status);
     }
 
     // If the signature is valid, proceed to application
@@ -83,3 +83,24 @@ void log_error(BLState error_code) {
     printf("Bootloader error: %d\n", error_code);
 }
 
+
+// error handling function
+void Bootloader_HandleError(BLState error_code) {
+    log_error(error_code);
+
+    switch (error_code) {
+        case BL_ERR_FLASH_WRITE:
+        case BL_VerifyApplicationFail:
+            attempt_recovery();
+            break;
+        case BL_UpdateFailure:
+            revert_to_last_good_firmware();
+            break;
+        case BL_ERR_HW_FAILURE:
+            enter_safe_mode();
+            break;
+        default:
+            reset_device();
+            break;
+    }    
+}
