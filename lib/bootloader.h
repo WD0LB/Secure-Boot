@@ -8,6 +8,8 @@
 #define END_ADDRESS (uint32_t)0x080FFFFB
 #define FIRMWARE_SIZE (END_ADDRESS - APP_ADDRESS + 1)
 
+
+
 /* Function Declarations */
 static uint8_t verify_signature(void);
 typedef void (*pFunction)(void);

@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 #include "bootloader.h"
-#include "crypto.h" // Assume this header provides cryptographic functionalities
+#include "crypto.h" // Acryptographic functionalities
 
 
 
@@ -11,7 +11,7 @@ int main(void)
 {
     uint8_t status;
 
-    // Initialize system peripherals necessary for the bootloader
+    // Initialize system peripherals necessary for the bootloader ot work properly
     Bootloader_Init();
 
     // Verify the firmware's signature
@@ -37,7 +37,7 @@ uint8_t Bootloader_Init(void)
 
     /* Clear flash flags */
     HAL_FLASH_Unlock();
-    __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_ALL_ERRORS);
+    // __HAL_FLASH_CLEAR_FLAG(FLASH_FLAG_ALL_ERRORS);
     HAL_FLASH_Lock();
 
     return BL_OK;
@@ -76,3 +76,10 @@ void Bootloader_JumpToApplication(void)
     // Jump to application
     app_reset_handler();
 }
+
+// Error logging
+void log_error(BLState error_code) {
+    // Show the bootloader error
+    printf("Bootloader error: %d\n", error_code);
+}
+
