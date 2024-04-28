@@ -91,15 +91,19 @@ void Bootloader_HandleError(BLState error_code) {
     switch (error_code) {
         case BL_ERR_FLASH_WRITE:
         case BL_VerifyApplicationFail:
+            // TODO - to be defined
             attempt_recovery();
             break;
         case BL_UpdateFailure:
+            // TODO - to be defined
             revert_to_last_good_firmware();
             break;
         case BL_ERR_HW_FAILURE:
+            // TODO - to be defined
             enter_safe_mode();
             break;
         default:
+            // TODO - to be defined
             reset_device();
             break;
     }    
